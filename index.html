@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Валентин — первая подработка без страха и рисков</title>
-<meta name="description" content="Помогу впервые выйти на подработку через Авито и Джем: безопасный старт, куратор на первую смену, оплата по правилам сервиса." />
+<meta name="description" content="Помогу впервые выйти на подработку через Авито и Джем: безопасный старт, поддержка на месте, бонус за первую смену." />
 <style>
   :root {
     --bg: #ffffff;
@@ -37,7 +37,7 @@
 
   header {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,.95);
+    background: rgba(255,255,255,.96);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
@@ -46,28 +46,41 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 14px 20px;
   }
-  .brand { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+  .brand { font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
   nav ul { list-style: none; display: flex; gap: 22px; font-size: .93rem; }
   nav a { color: var(--muted); font-weight: 500; }
   nav a:hover { color: var(--text); text-decoration: none; }
-  @media (max-width: 720px) { nav ul { display: none; } }
+  @media (max-width: 760px) { nav ul { display: none; } }
 
+  /* HERO */
   .hero {
     max-width: 1080px; margin: 0 auto; padding: 72px 20px 56px;
     text-align: center;
     background: linear-gradient(160deg, #f6f8fa 0%, #eef4fb 100%);
     border-radius: 0 0 var(--radius) var(--radius);
+    position: relative; overflow: hidden;
   }
+  .hero::before {
+    content: ""; position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,127,55,.12), transparent 70%);
+  }
+  .hero::after {
+    content: ""; position: absolute; bottom: -80px; left: -60px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(9,105,218,.10), transparent 70%);
+  }
+  .hero > * { position: relative; z-index: 1; }
   .hero .kicker {
     display: inline-block; padding: 5px 14px; margin-bottom: 18px;
     background: var(--success-bg); color: var(--success);
-    border-radius: 999px; font-size: .82rem; font-weight: 600;
+    border-radius: 999px; font-size: .82rem; font-weight: 700;
     border: 1px solid rgba(26,127,55,.2);
   }
   .hero h1 {
-    font-size: clamp(1.85rem, 4.4vw, 2.7rem);
-    line-height: 1.2; margin-bottom: 18px; font-weight: 800;
-    letter-spacing: -.01em;
+    font-size: clamp(1.85rem, 4.4vw, 2.75rem);
+    line-height: 1.18; margin-bottom: 18px; font-weight: 800;
+    letter-spacing: -.015em;
   }
   .hero h1 .accent {
     background: linear-gradient(135deg, #0969da, #1a7f37);
@@ -75,12 +88,13 @@
   }
   .hero p.lead { font-size: 1.1rem; color: var(--muted); max-width: 700px; margin: 0 auto 28px; }
   .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
-  .btn { display: inline-block; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: .95rem; transition: .15s; border: 1px solid transparent; cursor: pointer; }
-  .btn-primary { background: var(--accent); color: #fff; }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: .95rem; transition: .15s; border: 1px solid transparent; cursor: pointer; }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(9,105,218,.25); }
   .btn-primary:hover { background: var(--accent-hover); text-decoration: none; }
   .btn-secondary { border-color: var(--border); color: var(--text); background: #fff; }
   .btn-secondary:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
   .btn-large { padding: 14px 28px; font-size: 1rem; }
+  .btn-arrow::after { content: " →"; }
 
   .safe-strip {
     display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
@@ -91,11 +105,48 @@
 
   section { max-width: 1080px; margin: 0 auto; padding: 64px 20px; }
   section h2 {
-    font-size: 1.65rem; margin-bottom: 8px; font-weight: 700;
+    font-size: 1.65rem; margin-bottom: 8px; font-weight: 800;
     letter-spacing: -.01em;
   }
   section .subtitle { color: var(--muted); margin-bottom: 28px; max-width: 720px; }
 
+  /* HOW IT WORKS */
+  .how-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .how-card {
+    padding: 24px; border-radius: var(--radius);
+    background: #fff; border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .how-card .num-big {
+    font-size: 2.2rem; font-weight: 800; color: var(--accent);
+    line-height: 1; margin-bottom: 10px;
+  }
+  .how-card h3 { font-size: 1.03rem; margin-bottom: 6px; }
+  .how-card p { font-size: .92rem; color: var(--muted); }
+
+  /* EARN */
+  .earn-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .earn-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+    box-shadow: var(--shadow);
+  }
+  .earn-card .role { font-size: .9rem; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+  .earn-card .amount {
+    font-size: 1.65rem; font-weight: 800;
+    color: var(--success); letter-spacing: -.02em;
+  }
+  .earn-card .amount small { font-size: .8rem; color: var(--muted); font-weight: 500; }
+  .earn-card .desc { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+
+  /* FEAR */
   .fear-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 16px;
@@ -110,14 +161,15 @@
     padding-bottom: 10px; margin-bottom: 10px;
     border-bottom: 1px dashed var(--border);
   }
-  .fear-card .fear::before { content: "«"; color: var(--muted); }
-  .fear-card .fear::after { content: "»"; color: var(--muted); }
+  .fear-card .fear::before { content: "«"; }
+  .fear-card .fear::after { content: "»"; }
   .fear-card .answer { font-size: .95rem; color: var(--text); }
   .fear-card .answer::before {
     content: "✓"; display: inline-block;
     color: var(--success); font-weight: 800; margin-right: 6px;
   }
 
+  /* SOFT CTA */
   .soft-cta {
     background: linear-gradient(135deg, #eaf6ec 0%, #eef4fb 100%);
     border: 1px solid rgba(26,127,55,.25);
@@ -127,6 +179,7 @@
   .soft-cta h3 { font-size: 1.35rem; margin-bottom: 10px; }
   .soft-cta p { color: var(--muted); max-width: 620px; margin: 0 auto 22px; }
 
+  /* PROOF */
   .proof-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 16px;
@@ -134,31 +187,26 @@
   .proof-card {
     padding: 20px; border-radius: var(--radius);
     background: var(--bg-alt); border: 1px solid var(--border);
-    font-size: .95rem; color: var(--text);
+    font-size: .95rem;
   }
-  .proof-card .who {
-    font-weight: 700; font-size: .88rem; margin-bottom: 8px;
-    color: var(--accent);
-  }
+  .proof-card .who { font-weight: 700; font-size: .88rem; margin-bottom: 8px; color: var(--accent); }
   .proof-card .quote { color: var(--muted); font-style: italic; }
   .proof-card .quote::before { content: "«"; }
   .proof-card .quote::after { content: "»"; }
 
+  /* BONUSES */
   .grid { display: grid; gap: 18px; }
   .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-
   .card {
     background: #fff; border: 1px solid var(--border);
     border-radius: var(--radius); padding: 24px;
     box-shadow: var(--shadow);
   }
-  .card h3 { font-size: 1.08rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .card h3 { font-size: 1.08rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .card ul { list-style: none; padding: 0; }
   .card ul li { padding: 6px 0 6px 22px; position: relative; color: var(--muted); font-size: .93rem; }
   .card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 800; }
   .card ul li strong { color: var(--text); }
-
   .logo-badge { height: 24px; width: auto; }
   .logo-badge.jam {
     height: 24px; border-radius: 5px; padding: 1px 8px;
@@ -173,6 +221,7 @@
     border-radius: 999px;
   }
 
+  /* STEPS */
   .step-list { counter-reset: step; }
   .step {
     background: #fff; border: 1px solid var(--border);
@@ -193,6 +242,7 @@
   .step li { margin-bottom: 5px; }
   .step strong { color: var(--text); }
 
+  /* DETAILS */
   details {
     background: #fff; border: 1px solid var(--border);
     border-radius: var(--radius); margin-bottom: 10px; overflow: hidden;
@@ -200,7 +250,7 @@
   }
   details[open] { border-color: var(--accent); }
   summary {
-    padding: 15px 20px; cursor: pointer; font-weight: 600;
+    padding: 15px 20px; cursor: pointer; font-weight: 700;
     display: flex; align-items: center; gap: 10px;
     list-style: none; user-select: none; font-size: .96rem;
   }
@@ -212,15 +262,46 @@
   details .content li { margin-bottom: 5px; }
   details .content strong { color: var(--text); }
 
-  .curator {
+  /* INFO BANNER */
+  .info-banner {
     background: linear-gradient(135deg, #eef4fb 0%, #eaf6ec 100%);
     border: 1px solid rgba(9,105,218,.2);
     border-radius: var(--radius); padding: 22px;
     margin-bottom: 20px;
   }
-  .curator h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--accent); }
-  .curator p { font-size: .95rem; color: var(--text); }
+  .info-banner h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--accent); }
+  .info-banner p { font-size: .95rem; }
 
+  /* ROLES */
+  .role-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .role-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+    box-shadow: var(--shadow);
+  }
+  .role-card .ico { font-size: 1.8rem; margin-bottom: 8px; }
+  .role-card h3 { font-size: 1rem; margin-bottom: 6px; }
+  .role-card p { font-size: .92rem; color: var(--muted); }
+
+  /* PACK */
+  .pack-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .pack-item {
+    display: flex; gap: 10px; align-items: center;
+    padding: 12px 16px; background: var(--bg-alt);
+    border-radius: 10px; font-size: .92rem;
+  }
+  .pack-item .ico { font-size: 1.2rem; }
+
+  /* FAQ */
+  .faq details summary { font-size: .97rem; }
+
+  /* RULES */
   .rule {
     display: flex; gap: 14px; padding: 16px 18px;
     background: var(--warn-bg); border-left: 4px solid var(--warn);
@@ -230,6 +311,7 @@
   .rule h4 { margin-bottom: 3px; font-size: 1rem; }
   .rule p { color: var(--muted); font-size: .92rem; }
 
+  /* CONTACT */
   .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .contact-card {
     background: #fff; border: 1px solid var(--border);
@@ -238,7 +320,7 @@
   }
   .contact-card .icon { font-size: 1.9rem; margin-bottom: 8px; }
   .contact-card h4 { margin-bottom: 6px; font-size: 1rem; }
-  .contact-card a { font-size: 1rem; font-weight: 600; display: inline-block; }
+  .contact-card a { font-size: 1.05rem; font-weight: 700; display: inline-block; }
   .contact-card p { color: var(--muted); font-size: .85rem; margin-top: 4px; }
 
   .note {
@@ -254,10 +336,10 @@
     padding: 44px 24px; text-align: center;
   }
   .final-cta h3 { font-size: 1.5rem; margin-bottom: 10px; color: #fff; }
-  .final-cta p { color: rgba(255,255,255,.85); margin-bottom: 24px; max-width: 560px; margin-left: auto; margin-right: auto; }
-  .final-cta .btn-primary { background: #fff; color: var(--accent); }
+  .final-cta p { color: rgba(255,255,255,.9); margin-bottom: 24px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .final-cta .btn-primary { background: #fff; color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,.2); }
   .final-cta .btn-primary:hover { background: #f6f8fa; }
-  .final-cta .btn-secondary { border-color: rgba(255,255,255,.4); color: #fff; background: transparent; }
+  .final-cta .btn-secondary { border-color: rgba(255,255,255,.5); color: #fff; background: transparent; }
   .final-cta .btn-secondary:hover { border-color: #fff; color: #fff; }
 
   footer {
@@ -273,6 +355,7 @@
     .hero { padding: 56px 16px 40px; }
     .soft-cta { padding: 28px 18px; }
     .final-cta { padding: 32px 18px; }
+    .earn-card .amount { font-size: 1.4rem; }
   }
 </style>
 </head>
@@ -282,9 +365,10 @@
   <nav>
     <div class="brand">🦉 Валентин</div>
     <ul>
+      <li><a href="#how">Как это работает</a></li>
       <li><a href="#safety">Гарантии</a></li>
       <li><a href="#start">Как начать</a></li>
-      <li><a href="#shift">Первая смена</a></li>
+      <li><a href="#faq">Вопросы</a></li>
       <li><a href="#contact">Контакты</a></li>
     </ul>
   </nav>
@@ -292,114 +376,105 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="kicker">🛡️ Безопасный старт · куратор на первую смену</div>
+  <div class="kicker">🛡️ Безопасный старт · поддержка на месте · бонус за первую смену</div>
   <h1>Первая подработка <span class="accent">без страха и рисков</span> — проведу вас за руку от заявки до выплаты</h1>
   <p class="lead">
     Меня зовут <strong>Валентин</strong>. Помогаю людям, которые <em>никогда</em> не работали через сервисы подработки,
     спокойно пройти весь путь. Никаких «разберитесь сами» — разбираем каждый шаг вместе.
   </p>
   <div class="cta-row">
-    <a href="https://wa.me/79771199584" class="btn btn-primary btn-large" target="_blank" rel="noopener">💬 Написать в WhatsApp</a>
+    <a href="https://wa.me/79771199584" class="btn btn-primary btn-large" target="_blank" rel="noopener">💬 Посмотреть 3 смены рядом</a>
     <a href="tel:+79771199584" class="btn btn-secondary btn-large">📞 Позвонить / MAX</a>
   </div>
   <div class="safe-strip">
     <span><span class="check">✓</span> Выплата по правилам сервиса</span>
     <span><span class="check">✓</span> Регистрация без рисков</span>
     <span><span class="check">✓</span> Оплачиваемая первая смена</span>
-    <span><span class="check">✓</span> Куратор рядом</span>
+    <span><span class="check">✓</span> На месте всегда помогут</span>
   </div>
 </div>
 
+<!-- HOW IT WORKS -->
+<section id="how">
+  <h2>Как это работает — три шага</h2>
+  <p class="subtitle">Без сложных анкет и обязательств. Каждый шаг можно сделать за пару минут.</p>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="num-big">01</div>
+      <h3>Напишите мне</h3>
+      <p>В WhatsApp или MAX. Скажите район — скину 3 реальных смены рядом. <strong>Регистрация не нужна.</strong></p>
+    </div>
+    <div class="how-card">
+      <div class="num-big">02</div>
+      <h3>Выберите смену</h3>
+      <p>Скажу, что взять с собой, как одеться и сколько идти от метро. Не подошло — ищем другой вариант.</p>
+    </div>
+    <div class="how-card">
+      <div class="num-big">03</div>
+      <h3>Выйдите и получите</h3>
+      <p>На месте встретят и покажут, что делать. После смены — выплата + бонус за старт.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EARN -->
+<section>
+  <h2>💰 Сколько можно заработать</h2>
+  <p class="subtitle">Ориентировочные суммы за смену 4–8 часов. Точная оплата указана в приложении до того, как вы возьмёте смену.</p>
+  <div class="earn-grid">
+    <div class="earn-card">
+      <div class="role">📦 Сборка заказов</div>
+      <div class="amount">1 500–3 500 ₽ <small>/ смена</small></div>
+      <div class="desc">Самая частая позиция для новичков</div>
+    </div>
+    <div class="earn-card">
+      <div class="role">🛒 Прикассовая зона</div>
+      <div class="amount">1 200–2 800 ₽ <small>/ смена</small></div>
+      <div class="desc">Помощь покупателям и на кассах самообслуживания</div>
+    </div>
+    <div class="earn-card">
+      <div class="role">💪 Выкладка и разгрузка</div>
+      <div class="amount">1 300–3 000 ₽ <small>/ смена</small></div>
+      <div class="desc">Лёгкие зоны — без тяжёлых коробок в первую смену</div>
+    </div>
+  </div>
+  <p style="margin-top:18px;font-size:.9rem;color:var(--muted);">
+    ➕ К этому — <strong>бонусы за первую смену</strong>: +1 000 ₽ на Авито и +1 500 ₽ на Джеме. Подробнее ниже.
+  </p>
+</section>
+
 <!-- SAFETY / FEARS -->
 <section id="safety">
-  <h2>«А меня не обманут?» — вот как это устроено на самом деле</h2>
-  <p class="subtitle">
-    Главный вопрос новичка — не «сколько я заработаю», а «заплатят ли вообще».
-    Отвечаю конкретно, а не общими словами.
-  </p>
+  <h2>«А меня не обманут?» — вот как это устроено</h2>
+  <p class="subtitle">Главный вопрос новичка — не «сколько я заработаю», а «заплатят ли вообще». Отвечаю конкретно.</p>
   <div class="fear-grid">
-
     <div class="fear-card">
       <div class="fear">Меня кинут и не заплатят</div>
       <div class="answer">
-        Деньги приходят автоматически после закрытия смены.
-        Авито — до 48 часов, Джем — до 12 часов.
-        Это прописано в правилах сервиса, а не в моих обещаниях.
-        Вы сами видите статус выплаты в приложении.
+        Деньги приходят автоматически после закрытия смены: Авито — до 48 часов, Джем — до 12 часов.
+        Это прописано в правилах сервиса. Вы сами видите статус выплаты в приложении.
       </div>
     </div>
-
     <div class="fear-card">
       <div class="fear">Не разберусь в приложении</div>
       <div class="answer">
-        Регистрация — 2 минуты по телефону. Дальше подскажу голосом,
-        что нажимать. Если что-то зависнет — в приложении есть поддержка,
-        пишете прямо оттуда, не остаётесь один.
+        Регистрация — 2 минуты по телефону. Дальше подскажу голосом, что нажимать.
+        Если что-то зависнет — в приложении есть поддержка, пишете прямо оттуда.
       </div>
     </div>
-
     <div class="fear-card">
       <div class="fear">Приду на смену — там не поймут</div>
       <div class="answer">
-        На первую смену ставлю на самую простую позицию:
-        упаковка, выкладка, помощь в зале. Наставник на точке
-        встретит и покажет, что делать. Плюс я на связи в чате.
+        На месте <strong>всегда есть человек</strong>, который встретит и покажет: где инвентарь,
+        как работает терминал, куда идти. Вам не нужно разбираться самому — рядом будут люди,
+        которые через это уже проходили.
       </div>
     </div>
-
     <div class="fear-card">
       <div class="fear">А если не понравится — что тогда?</div>
       <div class="answer">
-        Первая смена — оплачиваемая проба на 2–4 часа.
-        Не понравится — просто не берёте следующую.
+        Первая смена — оплачиваемая проба на 2–4 часа. Не понравится — просто не берёте следующую.
         Штрафов за отказ заранее (более 12 часов) нет.
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SOFT MICRO-STEP -->
-<section>
-  <div class="soft-cta">
-    <h3>👣 Начните с маленького шага</h3>
-    <p>
-      Не «регистрируйтесь и работайте», а <strong>«просто посмотрите, что есть рядом»</strong>.
-      Скажите район или метро — скину 3 реальных смены. Регистрация не нужна.
-      Решите, подходит ли график — и только потом что-то оформляем.
-    </p>
-    <a href="https://wa.me/79771199584" class="btn btn-primary btn-large" target="_blank" rel="noopener">Получить 3 варианта смен</a>
-  </div>
-</section>
-
-<!-- SOCIAL PROOF -->
-<section>
-  <h2>Такие же, как вы, уже попробовали</h2>
-  <p class="subtitle">Не идеальные истории, а реальные первые шаги новичков.</p>
-  <!-- ⚠️ Замените на реальные отзывы ваших кандидатов -->
-  <div class="proof-grid">
-    <div class="proof-card">
-      <div class="who">Марина, 22 года</div>
-      <div class="quote">
-        Первый раз вышла в субботу на 3 часа. Было страшновато,
-        но на месте всё объяснили. Деньги пришли на следующий день.
-        Теперь беру по 2 смены в неделю.
-      </div>
-    </div>
-    <div class="proof-card">
-      <div class="who">Алексей, 19 лет</div>
-      <div class="quote">
-        Боялся, что не разберусь с приложением. Валентин продиктовал
-        по шагам, где что нажать. Смена прошла спокойно, выплату
-        увидел в приложении сам.
-      </div>
-    </div>
-    <div class="proof-card">
-      <div class="who">Ольга, 34 года</div>
-      <div class="quote">
-        Сомневалась, но попробовала одну смену на 4 часа.
-        Всё честно: часы подтвердили, деньги пришли в тот же день,
-        как и обещали. Никаких сюрпризов.
       </div>
     </div>
   </div>
@@ -407,10 +482,9 @@
 
 <!-- BONUSES -->
 <section id="bonuses">
-  <h2>Бонусы за первую смену — ваш «входной билет» в плюс</h2>
+  <h2>🎁 Бонусы за первую смену — ваш «входной билет» в плюс</h2>
   <p class="subtitle">Даже если не понравится — вы не в минусе. Платформы платят новичкам за старт.</p>
   <div class="grid grid-2">
-
     <div class="card">
       <h3>
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Avito_logo.png" alt="Авито" class="logo-badge" />
@@ -424,7 +498,6 @@
         <li>Выплаты на карту <strong>в течение 48 часов</strong> после подтверждения смены</li>
       </ul>
     </div>
-
     <div class="card">
       <h3>
         <span class="logo-badge jam">⚡ Джем</span>
@@ -438,7 +511,72 @@
         <li>Выплаты <strong>в течение 12 часов</strong> после подтверждения задания</li>
       </ul>
     </div>
+  </div>
+</section>
 
+<!-- SOFT CTA -->
+<section>
+  <div class="soft-cta">
+    <h3>👣 Начните с маленького шага</h3>
+    <p>
+      Не «регистрируйтесь и работайте», а <strong>«просто посмотрите, что есть рядом»</strong>.
+      Скажите район или метро — скину 3 реальных смены. Регистрация не нужна.
+      Решите, подходит ли график — и только потом что-то оформляем.
+    </p>
+    <a href="https://wa.me/79771199584" class="btn btn-primary btn-large" target="_blank" rel="noopener">💬 Получить 3 варианта смен</a>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section>
+  <h2>Такие же, как вы, уже попробовали</h2>
+  <p class="subtitle">Не идеальные истории, а реальные первые шаги новичков.</p>
+  <!-- ⚠️ Замените на реальные отзывы ваших кандидатов -->
+  <div class="proof-grid">
+    <div class="proof-card">
+      <div class="who">Марина, 22 года</div>
+      <div class="quote">
+        Первый раз вышла в субботу на 3 часа. Было страшновато, но на месте всё объяснили.
+        Деньги пришли на следующий день. Теперь беру по 2 смены в неделю.
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="who">Алексей, 19 лет</div>
+      <div class="quote">
+        Боялся, что не разберусь с приложением. Валентин продиктовал по шагам, где что нажать.
+        Смена прошла спокойно, выплату увидел в приложении сам.
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="who">Ольга, 34 года</div>
+      <div class="quote">
+        Сомневалась, но попробовала одну смену на 4 часа. Всё честно: часы подтвердили,
+        деньги пришли в тот же день, как и обещали. Никаких сюрпризов.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section>
+  <h2>Что за работа — простыми словами</h2>
+  <p class="subtitle">Никаких сложных задач. Всё, что нужно — внимательность и желание разобраться.</p>
+  <div class="role-grid">
+    <div class="role-card">
+      <div class="ico">📦</div>
+      <h3>Сборка заказов</h3>
+      <p>Терминал сам показывает, куда идти и что брать. Вы просто следуете подсказкам и упаковываете.</p>
+    </div>
+    <div class="role-card">
+      <div class="ico">🛒</div>
+      <h3>Прикассовая зона</h3>
+      <p>Помочь найти товар, подсказать с кассой самообслуживания. Не «продавать» — а помогать.</p>
+    </div>
+    <div class="role-card">
+      <div class="ico">💪</div>
+      <h3>Выкладка и разгрузка</h3>
+      <p>Расставить товар на полки, помочь с лёгкой разгрузкой. В первую смену — без тяжёлого.</p>
+    </div>
   </div>
 </section>
 
@@ -446,35 +584,22 @@
 <section id="start">
   <h2>Как начать — 4 спокойных шага</h2>
   <p class="subtitle">Каждый шаг можно сделать за пару минут. Никакой спешки и обязательств.</p>
-
   <div class="step-list">
     <div class="step">
       <h3>Напишите мне</h3>
-      <p>
-        В WhatsApp или MAX. Скажите район — скину 3 реальных смены рядом.
-        <strong>Регистрация не нужна.</strong> Просто смотрите, что есть.
-      </p>
+      <p>В WhatsApp или MAX. Скажите район — скину 3 реальных смены рядом. <strong>Регистрация не нужна.</strong> Просто смотрите, что есть.</p>
     </div>
     <div class="step">
       <h3>Выберите одну смену</h3>
-      <p>
-        Подскажу, что взять с собой, как одеться и сколько идти от метро.
-        Если неудобно — ищем другой вариант, без давления.
-      </p>
+      <p>Подскажу, что взять с собой, как одеться и сколько идти от метро. Если неудобно — ищем другой вариант, без давления.</p>
     </div>
     <div class="step">
       <h3>Оформим за 15 минут</h3>
-      <p>
-        Если статуса самозанятого ещё нет — пройдём вместе через «Мой налог»,
-        это 2–10 минут. Затем регистрация на платформе — тоже подскажу по шагам.
-      </p>
+      <p>Если статуса самозанятого ещё нет — пройдём вместе через «Мой налог», это 2–10 минут. Затем регистрация на платформе — тоже подскажу по шагам.</p>
     </div>
     <div class="step">
-      <h3>Первая смена — с куратором</h3>
-      <p>
-        Ставлю на простую позицию. Наставник встретит на точке, покажет инвентарь.
-        После смены напишу вам: «Как всё прошло?» — и если есть вопросы, разберём.
-      </p>
+      <h3>Первая смена — с поддержкой на месте</h3>
+      <p>Ставлю на простую позицию. На точке встретит наставник или старший смены — покажет инвентарь, терминал и подскажет, если что-то непонятно. После смены напишу вам: «Как всё прошло?» — и если есть вопросы, разберём.</p>
     </div>
   </div>
 </section>
@@ -590,13 +715,13 @@
   <h2>Первая смена — пошагово</h2>
   <p class="subtitle">Что сделать до, во время и после, чтобы спокойно отработать и получить деньги.</p>
 
-  <div class="curator">
-    <h3>🛡️ На первую смену я закрепляю куратора</h3>
+  <div class="info-banner">
+    <h3>🛡️ На месте всегда есть человек, который поможет</h3>
     <p>
-      Куратор — это конкретный человек на точке, который встретит вас,
-      покажет, где что находится, и скажет: <em>«Спрашивай сразу, это нормально»</em>.
-      Плюс я на связи в чате: если что-то непонятно в процессе — пишите, разберём вместе.
-      После смены я напишу вам: «Как всё прошло? Есть вопросы?» — чтобы вторая смена была проще.
+      На любой точке есть <strong>наставник, старший смены или опытный сотрудник</strong>.
+      Он встретит вас, покажет, где инвентарь и терминал, и скажет: <em>«Спрашивай сразу, это нормально»</em>.
+      Вам не нужно приходить и «разбираться самому» — рядом будут люди, которые через это уже проходили.
+      А я на связи в чате: если что-то непонятно в процессе — пишите, разберём вместе.
     </p>
   </div>
 
@@ -659,9 +784,23 @@
   </div>
 </section>
 
+<!-- PACK -->
+<section>
+  <h2>🎒 Что взять на первую смену</h2>
+  <p class="subtitle">Минимальный набор — всё остальное подскажут на месте.</p>
+  <div class="pack-list">
+    <div class="pack-item"><span class="ico">🪪</span> Паспорт</div>
+    <div class="pack-item"><span class="ico">📱</span> Заряженный телефон</div>
+    <div class="pack-item"><span class="ico">👟</span> Удобная обувь</div>
+    <div class="pack-item"><span class="ico">📖</span> Медкнижка (если нужна)</div>
+    <div class="pack-item"><span class="ico">💧</span> Вода и перекус</div>
+    <div class="pack-item"><span class="ico">🙂</span> Спокойный настрой</div>
+  </div>
+</section>
+
 <!-- PAYMENTS -->
 <section>
-  <h2>Выплаты и налоги</h2>
+  <h2>💸 Выплаты и налоги</h2>
   <p class="subtitle">Всё автоматизировано и прописано в правилах сервиса — бежать в налоговую не нужно.</p>
   <div class="grid grid-2">
     <div class="card">
@@ -684,32 +823,45 @@
   <div class="note">💡 <strong>Совет:</strong> если деньги не пришли вовремя — не жди неделю. Напиши в чат поддержки сервиса с номером смены, датой и точкой.</div>
 </section>
 
-<!-- RULES -->
-<section>
-  <h2>Три правила, которые важнее всего</h2>
-  <div style="margin-top:16px;">
-    <div class="rule">
-      <div class="num">1</div>
-      <div>
-        <h4>Отменять смену меньше чем за 12 часов — плохо</h4>
-        <p>В Джеме за это автоматическая блокировка на 7 дней. При повторе срок растёт. Уважительная причина — напиши в поддержку, блокировку снимут.</p>
-      </div>
-    </div>
-    <div class="rule">
-      <div class="num">2</div>
-      <div>
-        <h4>Не спорь на точке</h4>
-        <p>Тебя не могут найти, спорная ситуация, конфликт — не выясняй отношения с сотрудниками магазина. Пиши в чат поддержки — там подскажут.</p>
-      </div>
-    </div>
-    <div class="rule">
-      <div class="num">3</div>
-      <div>
-        <h4>Первая смена — проба, а не экзамен</h4>
-        <p>Можно задавать вопросы, просить помощи, говорить «я не знаю, как это сделать». Наставник на точке существует именно для этого. Если первые полчаса ищешь инвентарь — это не твоя вина, это задача точки. Спрашивай сразу.</p>
-      </div>
-    </div>
-  </div>
+<!-- FAQ -->
+<section id="faq">
+  <h2>Частые вопросы новичков</h2>
+  <p class="subtitle">Если чего-то нет ниже — напишите, отвечу лично.</p>
+
+  <details class="faq">
+    <summary>Нужен ли опыт работы?</summary>
+    <div class="content">Нет. Все задачи простые: следовать подсказкам терминала, помогать покупателям, расставлять товар. На месте всегда есть человек, который покажет, что делать.</div>
+  </details>
+
+  <details class="faq">
+    <summary>Можно ли совмещать с учёбой или основной работой?</summary>
+    <div class="content">Да. Смены берутся по свободному графику — можно выходить на 3–4 часа в удобные дни. Никто не заставляет брать смены каждую неделю.</div>
+  </details>
+
+  <details class="faq">
+    <summary>Сколько ждать первую выплату?</summary>
+    <div class="content">Авито — до 48 часов после подтверждения смены. Джем — обычно в течение 12 часов. Плюс бонус за первую смену (1000 или 1500 ₽ в зависимости от платформы).</div>
+  </details>
+
+  <details class="faq">
+    <summary>А если не понравится или не получится?</summary>
+    <div class="content">Первая смена — оплачиваемая проба. Если не понравится — просто не берёте следующую. Штрафов за отказ (более чем за 12 часов) нет. Единственное, что важно — предупредить заранее, если планы изменились.</div>
+  </details>
+
+  <details class="faq">
+    <summary>Это безопасно? Куда уходят мои документы?</summary>
+    <div class="content">Документы загружаются только в официальные приложения Авито и Джем — они проверяют данные для допуска к сменам. Я лично никаких документов не собираю и не храню. Всё, что нужно от вас — написать мне, чтобы я дал ссылку и подсказал по шагам.</div>
+  </details>
+
+  <details class="faq">
+    <summary>Что если опоздаю на первую смену?</summary>
+    <div class="content">Лучше приходить за 15 минут до начала — чтобы переодеться, отметиться и получить терминал. Если опаздываете — сразу напишите в чат поддержки сервиса и мне: подскажем, что делать. Обычно заказчики идут навстречу, если предупредить заранее.</div>
+  </details>
+
+  <details class="faq">
+    <summary>Можно ли выбрать, где работать?</summary>
+    <div class="content">Да. Смены фильтруются по району, метро, дате и времени. Можно выбрать близкий магазин и удобные часы. Я помогу подобрать варианты под ваш график.</div>
+  </details>
 </section>
 
 <!-- CONTACT -->
@@ -752,4 +904,4 @@
 </footer>
 
 </body>
-</html>
+    </html>
