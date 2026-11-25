@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Валентин — первая подработка без страха и рисков</title>
+<meta name="description" content="Помогу впервые выйти на подработку через Авито и Джем: безопасный старт, куратор на первую смену, оплата по правилам сервиса." />
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f6f8fa;
+    --bg-soft: #eef4fb;
+    --border: #d0d7de;
+    --text: #1f2328;
+    --muted: #656d76;
+    --accent: #0969da;
+    --accent-hover: #0550ae;
+    --success: #1a7f37;
+    --success-bg: #eaf6ec;
+    --warn: #9a6700;
+    --warn-bg: #fff8e5;
+    --radius: 14px;
+    --shadow: 0 1px 3px rgba(31,35,40,.06), 0 4px 12px rgba(31,35,40,.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  img { max-width: 100%; display: block; }
+
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px;
+  }
+  .brand { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+  nav ul { list-style: none; display: flex; gap: 22px; font-size: .93rem; }
+  nav a { color: var(--muted); font-weight: 500; }
+  nav a:hover { color: var(--text); text-decoration: none; }
+  @media (max-width: 720px) { nav ul { display: none; } }
+
+  .hero {
+    max-width: 1080px; margin: 0 auto; padding: 72px 20px 56px;
+    text-align: center;
+    background: linear-gradient(160deg, #f6f8fa 0%, #eef4fb 100%);
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .hero .kicker {
+    display: inline-block; padding: 5px 14px; margin-bottom: 18px;
+    background: var(--success-bg); color: var(--success);
+    border-radius: 999px; font-size: .82rem; font-weight: 600;
+    border: 1px solid rgba(26,127,55,.2);
+  }
+  .hero h1 {
+    font-size: clamp(1.85rem, 4.4vw, 2.7rem);
+    line-height: 1.2; margin-bottom: 18px; font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, #0969da, #1a7f37);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.lead { font-size: 1.1rem; color: var(--muted); max-width: 700px; margin: 0 auto 28px; }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: .95rem; transition: .15s; border: 1px solid transparent; cursor: pointer; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-hover); text-decoration: none; }
+  .btn-secondary { border-color: var(--border); color: var(--text); background: #fff; }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn-large { padding: 14px 28px; font-size: 1rem; }
+
+  .safe-strip {
+    display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
+    font-size: .88rem; color: var(--muted);
+  }
+  .safe-strip span { display: inline-flex; align-items: center; gap: 6px; }
+  .safe-strip .check { color: var(--success); font-weight: 800; }
+
+  section { max-width: 1080px; margin: 0 auto; padding: 64px 20px; }
+  section h2 {
+    font-size: 1.65rem; margin-bottom: 8px; font-weight: 700;
+    letter-spacing: -.01em;
+  }
+  section .subtitle { color: var(--muted); margin-bottom: 28px; max-width: 720px; }
+
+  .fear-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .fear-card {
+    padding: 22px; border-radius: var(--radius);
+    background: #fff; border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .fear-card .fear {
+    font-size: .93rem; color: var(--muted); font-style: italic;
+    padding-bottom: 10px; margin-bottom: 10px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .fear-card .fear::before { content: "«"; color: var(--muted); }
+  .fear-card .fear::after { content: "»"; color: var(--muted); }
+  .fear-card .answer { font-size: .95rem; color: var(--text); }
+  .fear-card .answer::before {
+    content: "✓"; display: inline-block;
+    color: var(--success); font-weight: 800; margin-right: 6px;
+  }
+
+  .soft-cta {
+    background: linear-gradient(135deg, #eaf6ec 0%, #eef4fb 100%);
+    border: 1px solid rgba(26,127,55,.25);
+    border-radius: var(--radius); padding: 36px 28px;
+    text-align: center;
+  }
+  .soft-cta h3 { font-size: 1.35rem; margin-bottom: 10px; }
+  .soft-cta p { color: var(--muted); max-width: 620px; margin: 0 auto 22px; }
+
+  .proof-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .proof-card {
+    padding: 20px; border-radius: var(--radius);
+    background: var(--bg-alt); border: 1px solid var(--border);
+    font-size: .95rem; color: var(--text);
+  }
+  .proof-card .who {
+    font-weight: 700; font-size: .88rem; margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .proof-card .quote { color: var(--muted); font-style: italic; }
+  .proof-card .quote::before { content: "«"; }
+  .proof-card .quote::after { content: "»"; }
+
+  .grid { display: grid; gap: 18px; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+  .card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .card h3 { font-size: 1.08rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li { padding: 6px 0 6px 22px; position: relative; color: var(--muted); font-size: .93rem; }
+  .card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 800; }
+  .card ul li strong { color: var(--text); }
+
+  .logo-badge { height: 24px; width: auto; }
+  .logo-badge.jam {
+    height: 24px; border-radius: 5px; padding: 1px 8px;
+    background: var(--bg-alt); border: 1px solid var(--border);
+    color: var(--success); font-weight: 700; font-size: .78rem;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .bonus-tag {
+    display: inline-block; margin-left: auto;
+    background: var(--success-bg); color: var(--success);
+    font-size: .72rem; font-weight: 700; padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .step-list { counter-reset: step; }
+  .step {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+    position: relative; margin-bottom: 14px; box-shadow: var(--shadow);
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; top: -12px; left: 20px;
+    background: var(--accent); color: #fff;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .88rem;
+  }
+  .step h3 { margin: 6px 0 8px; font-size: 1.03rem; }
+  .step p, .step li { color: var(--muted); font-size: .93rem; }
+  .step ul, .step ol { padding-left: 20px; margin-top: 6px; }
+  .step li { margin-bottom: 5px; }
+  .step strong { color: var(--text); }
+
+  details {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 10px; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  details[open] { border-color: var(--accent); }
+  summary {
+    padding: 15px 20px; cursor: pointer; font-weight: 600;
+    display: flex; align-items: center; gap: 10px;
+    list-style: none; user-select: none; font-size: .96rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "▾"; margin-left: auto; color: var(--muted); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(180deg); }
+  details .content { padding: 0 20px 20px; color: var(--muted); font-size: .93rem; }
+  details .content ul, details .content ol { padding-left: 20px; margin: 6px 0; }
+  details .content li { margin-bottom: 5px; }
+  details .content strong { color: var(--text); }
+
+  .curator {
+    background: linear-gradient(135deg, #eef4fb 0%, #eaf6ec 100%);
+    border: 1px solid rgba(9,105,218,.2);
+    border-radius: var(--radius); padding: 22px;
+    margin-bottom: 20px;
+  }
+  .curator h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--accent); }
+  .curator p { font-size: .95rem; color: var(--text); }
+
+  .rule {
+    display: flex; gap: 14px; padding: 16px 18px;
+    background: var(--warn-bg); border-left: 4px solid var(--warn);
+    border-radius: 10px; margin-bottom: 12px;
+  }
+  .rule .num { font-size: 1.3rem; font-weight: 800; color: var(--warn); min-width: 30px; }
+  .rule h4 { margin-bottom: 3px; font-size: 1rem; }
+  .rule p { color: var(--muted); font-size: .92rem; }
+
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .contact-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .contact-card .icon { font-size: 1.9rem; margin-bottom: 8px; }
+  .contact-card h4 { margin-bottom: 6px; font-size: 1rem; }
+  .contact-card a { font-size: 1rem; font-weight: 600; display: inline-block; }
+  .contact-card p { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+
+  .note {
+    background: var(--warn-bg); border-left: 4px solid var(--warn);
+    padding: 14px 18px; border-radius: 8px; margin: 16px 0;
+    font-size: .92rem; color: var(--text);
+  }
+  .note strong { color: var(--warn); }
+
+  .final-cta {
+    background: linear-gradient(135deg, #0969da 0%, #1a7f37 100%);
+    color: #fff; border-radius: var(--radius);
+    padding: 44px 24px; text-align: center;
+  }
+  .final-cta h3 { font-size: 1.5rem; margin-bottom: 10px; color: #fff; }
+  .final-cta p { color: rgba(255,255,255,.85); margin-bottom: 24px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .final-cta .btn-primary { background: #fff; color: var(--accent); }
+  .final-cta .btn-primary:hover { background: #f6f8fa; }
+  .final-cta .btn-secondary { border-color: rgba(255,255,255,.4); color: #fff; background: transparent; }
+  .final-cta .btn-secondary:hover { border-color: #fff; color: #fff; }
+
+  footer {
+    text-align: center; padding: 32px 20px;
+    color: var(--muted); font-size: .87rem;
+    border-top: 1px solid var(--border); margin-top: 40px;
+  }
+  footer .owl { font-size: 1.3rem; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 600px) {
+    section { padding: 44px 16px; }
+    .hero { padding: 56px 16px 40px; }
+    .soft-cta { padding: 28px 18px; }
+    .final-cta { padding: 32px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">🦉 Валентин</div>
+    <ul>
+      <li><a href="#safety">Гарантии</a></li>
+      <li><a href="#start">Как начать</a></li>
+      <li><a href="#shift">Первая смена</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="kicker">🛡️ Безопасный старт · куратор на первую смену</div>
+  <h1>Первая подработка <span class="accent">без страха и рисков</span> — проведу вас за руку от заявки до выплаты</h1>
+  <p class="lead">
+    Меня зовут <strong>Валентин</strong>. Помогаю людям, которые <em>никогда</em> не работали через сервисы подработки,
+    спокойно пройти весь путь. Никаких «разберитесь сами» — разбираем каждый шаг вместе.
+  </p>
+  <div class="cta-row">
+    <a href="https://wa.me/79771199584" class="btn btn-primary btn-large" target="_blank" rel="noopener">💬 Написать в WhatsApp</a>
+    <a href="tel:+79771199584" class="btn btn-secondary btn-large">📞 Позвонить / MAX</a>
+  </div>
+  <div class="safe-strip">
+    <span><span class="check">✓</span> Выплата по правилам сервиса</span>
+    <span><span class="check">✓</span> Регистрация без рисков</span>
+    <span><span class="check">✓</span> Оплачиваемая первая смена</span>
+    <span><span class="check">✓</span> Куратор рядом</span>
+  </div>
+</div>
+
+<!-- SAFETY / FEARS -->
+<section id="safety">
+  <h2>«А меня не обманут?» — вот как это устроено на самом деле</h2>
+  <p class="subtitle">
+    Главный вопрос новичка — не «сколько я заработаю», а «заплатят ли вообще».
+    Отвечаю конкретно, а не общими словами.
+  </p>
+  <div class="fear-grid">
+
+    <div class="fear-card">
+      <div class="fear">Меня кинут и не заплатят</div>
+      <div class="answer">
+        Деньги приходят автоматически после закрытия смены.
+        Авито — до 48 часов, Джем — до 12 часов.
+        Это прописано в правилах сервиса, а не в моих обещаниях.
+        Вы сами видите статус выплаты в приложении.
+      </div>
+    </div>
+
+    <div class="fear-card">
+      <div class="fear">Не разберусь в приложении</div>
+      <div class="answer">
+        Регистрация — 2 минуты по телефону. Дальше подскажу голосом,
+        что нажимать. Если что-то зависнет — в приложении есть поддержка,
+        пишете прямо оттуда, не остаётесь один.
+      </div>
+    </div>
+
+    <div class="fear-card">
+      <div class="fear">Приду на смену — там не поймут</div>
+      <div class="answer">
+        На первую смену ставлю на самую простую позицию:
+        упаковка, выкладка, помощь в зале. Наставник на точке
+        встретит и покажет, что делать. Плюс я на связи в чате.
+      </div>
+    </div>
+
+    <div class="fear-card">
+      <div class="fear">А если не понравится — что тогда?</div>
+      <div class="answer">
+        Первая смена — оплачиваемая проба на 2–4 часа.
+        Не понравится — просто не берёте следующую.
+        Штрафов за отказ заранее (более 12 часов) нет.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOFT MICRO-STEP -->
+<section>
+  <div class="soft-cta">
+    <h3>👣 Начните с маленького шага</h3>
+    <p>
+      Не «регистрируйтесь и работайте», а <strong>«просто посмотрите, что есть рядом»</strong>.
+      Скажите район или метро — скину 3 реальных смены. Регистрация не нужна.
+      Решите, подходит ли график — и только потом что-то оформляем.
+    </p>
+    <a href="https://wa.me/79771199584" class="btn btn-primary btn-large" target="_blank" rel="noopener">Получить 3 варианта смен</a>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section>
+  <h2>Такие же, как вы, уже попробовали</h2>
+  <p class="subtitle">Не идеальные истории, а реальные первые шаги новичков.</p>
+  <!-- ⚠️ Замените на реальные отзывы ваших кандидатов -->
+  <div class="proof-grid">
+    <div class="proof-card">
+      <div class="who">Марина, 22 года</div>
+      <div class="quote">
+        Первый раз вышла в субботу на 3 часа. Было страшновато,
+        но на месте всё объяснили. Деньги пришли на следующий день.
+        Теперь беру по 2 смены в неделю.
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="who">Алексей, 19 лет</div>
+      <div class="quote">
+        Боялся, что не разберусь с приложением. Валентин продиктовал
+        по шагам, где что нажать. Смена прошла спокойно, выплату
+        увидел в приложении сам.
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="who">Ольга, 34 года</div>
+      <div class="quote">
+        Сомневалась, но попробовала одну смену на 4 часа.
+        Всё честно: часы подтвердили, деньги пришли в тот же день,
+        как и обещали. Никаких сюрпризов.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUSES -->
+<section id="bonuses">
+  <h2>Бонусы за первую смену — ваш «входной билет» в плюс</h2>
+  <p class="subtitle">Даже если не понравится — вы не в минусе. Платформы платят новичкам за старт.</p>
+  <div class="grid grid-2">
+
+    <div class="card">
+      <h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Avito_logo.png" alt="Авито" class="logo-badge" />
+        Авито Подработка
+        <span class="bonus-tag">+1000 ₽ за старт</span>
+      </h3>
+      <ul>
+        <li><strong>+1 000 ₽</strong> к оплате за первую смену (если выйдешь в течение 30 дней после регистрации)</li>
+        <li><strong>до +3 000 ₽/неделю</strong> за регулярные выходы (зависит от акции)</li>
+        <li><strong>до 3 000 ₽</strong> компенсации за оформление/продление медкнижки</li>
+        <li>Выплаты на карту <strong>в течение 48 часов</strong> после подтверждения смены</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>
+        <span class="logo-badge jam">⚡ Джем</span>
+        Джем Работа
+        <span class="bonus-tag">+1500 ₽ за старт</span>
+      </h3>
+      <ul>
+        <li><strong>+1 500 ₽</strong> за регистрацию и загрузку документов</li>
+        <li><strong>+500 ₽</strong> к первому заказу <em>или</em> <strong>+1 500 ₽</strong> после трёх заказов (на выбор)</li>
+        <li><strong>+300 ₽</strong> к первому заказу в отдельных сетях (например, «Дикси»)</li>
+        <li>Выплаты <strong>в течение 12 часов</strong> после подтверждения задания</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="start">
+  <h2>Как начать — 4 спокойных шага</h2>
+  <p class="subtitle">Каждый шаг можно сделать за пару минут. Никакой спешки и обязательств.</p>
+
+  <div class="step-list">
+    <div class="step">
+      <h3>Напишите мне</h3>
+      <p>
+        В WhatsApp или MAX. Скажите район — скину 3 реальных смены рядом.
+        <strong>Регистрация не нужна.</strong> Просто смотрите, что есть.
+      </p>
+    </div>
+    <div class="step">
+      <h3>Выберите одну смену</h3>
+      <p>
+        Подскажу, что взять с собой, как одеться и сколько идти от метро.
+        Если неудобно — ищем другой вариант, без давления.
+      </p>
+    </div>
+    <div class="step">
+      <h3>Оформим за 15 минут</h3>
+      <p>
+        Если статуса самозанятого ещё нет — пройдём вместе через «Мой налог»,
+        это 2–10 минут. Затем регистрация на платформе — тоже подскажу по шагам.
+      </p>
+    </div>
+    <div class="step">
+      <h3>Первая смена — с куратором</h3>
+      <p>
+        Ставлю на простую позицию. Наставник встретит на точке, покажет инвентарь.
+        После смены напишу вам: «Как всё прошло?» — и если есть вопросы, разберём.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP ACCORDIONS -->
+<section>
+  <h2>Оформление по этапам</h2>
+  <p class="subtitle">Готовые чек-листы — раскройте нужный этап, я подскажу по каждому.</p>
+
+  <details>
+    <summary>🩺 Этап 1. Медицинская книжка (если нужна для смены)</summary>
+    <div class="content">
+      <p>Медкнижка нужна не для всех смен, но с ней открывается больше вариантов — работа в продуктовых магазинах и с людьми.</p>
+      <ol>
+        <li>Уточни в клинике, нужен ли чистый бланк. Если да — купи заранее.</li>
+        <li>Пройди медосмотр с паспортом, СНИЛС и фото 3×4.</li>
+        <li>Загрузи документы в приложение сервиса (в Авито — справку об обследовании; в Джем — номер книжки, дату медосмотра и фото нужных страниц).</li>
+        <li>Сохрани чек из клиники — на Авито можно вернуть до 3 000 ₽ после 3 смен за 30 дней.</li>
+      </ol>
+      <p><strong>Проблема:</strong> если в приложении не принимают документы — пиши в поддержку, проверив, все ли страницы и анализы загружены.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>💳 Этап 2. Статус самозанятого (обязательно)</summary>
+    <div class="content">
+      <p>Без этого статуса выплат не будет — это официальное требование платформ.</p>
+      <ol>
+        <li>Скачай приложение «Мой налог» (или зайди в банк, где есть услуга).</li>
+        <li>Нажми «Стать самозанятым», подтверди паспорт и ИНН через Госуслуги или камеру телефона.</li>
+        <li>Укажи регион — обычно определяется автоматически.</li>
+        <li>В «Моём налоге» найди сервис (Авито или Джем) в разделе «Партнёры» и предоставь доступ.</li>
+      </ol>
+      <p><strong>Проблема:</strong> статус не подтверждается — проверь паспортные данные и напиши в поддержку «Моего налога».</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>📱 Этап 3. Регистрация на Авито Подработке</summary>
+    <div class="content">
+      <ol>
+        <li>В приложении Авито → раздел «Работа» → «Подработка» (или перейди по моей ссылке).</li>
+        <li>Подтверди данные через Госуслуги — разовая проверка.</li>
+        <li>Добавь медкнижку (если нужна для выбранных смен).</li>
+        <li>Выбери смену, проверь адрес, время и что взять с собой.</li>
+      </ol>
+      <div class="note">⚠️ Приходи на точку <strong>за 15 минут</strong> до начала. Опоздание — риск, что заказчик не допустит к смене.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>📱 Этап 4. Регистрация на Джем Работе</summary>
+    <div class="content">
+      <ol>
+        <li>Скачай «Джем Работа» и зарегистрируйся (по номеру телефона или Сбер ID).</li>
+        <li>Загрузи документы: селфи, паспорт и фото с паспортом — проверка до 5 минут.</li>
+        <li>Подключи банковскую карту или СБП для выплат.</li>
+        <li>Выбери заказ и нажми «Взять заказ».</li>
+        <li>В день смены: за 2 часа подтверди выход, затем «Я в пути» → «Я на месте» → «Начать заказ».</li>
+      </ol>
+    </div>
+  </details>
+
+  <details>
+    <summary>📲 Этап 5. Как подтвердить смену на точке</summary>
+    <div class="content">
+      <h4 style="margin-bottom:6px;color:var(--text);">Авито Подработка</h4>
+      <ul>
+        <li>Смена начинается и заканчивается через QR-код: заказчик показывает код в приложении, исполнитель сканирует при входе и выходе.</li>
+        <li>QR-код могут показывать с экрана или через мобильный кабинет заказчика — это нормально.</li>
+        <li>Если не сканируется — сразу звони/пиши в поддержку, не уходя с точки.</li>
+      </ul>
+      <h4 style="margin:12px 0 6px;color:var(--text);">Джем Работа</h4>
+      <ul>
+        <li>QR-код появляется в твоём приложении, его сканирует ответственный на точке — для открытия и закрытия заказа.</li>
+        <li>В некоторых сменах QR сканируется через ТСД — работай только под своим логином, иначе смена не оплачивается.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>✅ Этап 6. Как проследить, что смену подтвердили</summary>
+    <div class="content">
+      <p><strong>Авито:</strong> после смены зайди в «Завершённые заявки» → фильтр «Нужно подтвердить». Если заказчик не подтвердит 24 часа, смена подтвердится автоматически.</p>
+      <p><strong>Джем:</strong> статус отображается в разделе заказов. Заказчик/директор точки подтверждает часы — до 72 часов.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>💸 Этап 7. Первая выплата</summary>
+    <div class="content">
+      <p><strong>Авито:</strong> в течение 48 часов (иногда быстрее) после подтверждения смены. Деньги — на баланс личного кабинета, оттуда вывод на карту.</p>
+      <p><strong>Джем:</strong> обычно в течение 12 часов после подтверждения задания, на карту или через СБП.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>🆘 Этап 8. Если что-то пошло не так</summary>
+    <div class="content">
+      <p><strong>Смена не подтверждена, деньги не пришли:</strong></p>
+      <ul>
+        <li><strong>Авито:</strong> прошло &gt;24 часов — пиши в поддержку Авито Подработки через приложение или сайт, приложи скриншоты.</li>
+        <li><strong>Джем:</strong> «Служба заботы» — <a href="mailto:zabota@jamrabota.ru">zabota@jamrabota.ru</a> или <a href="tel:88005507228">8 (800) 550-72-28</a>.</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>Заказчик не подтверждает смену:</strong> уточни на точке, всё ли он подтвердил. Если говорит «да», а статус не меняется — в поддержку со скриншотами.</p>
+      <p style="margin-top:10px;"><strong>QR-код не сканируется:</strong> не уходи с точки до решения. Авито — поддержка + фиксируй время. Джем — ответственный на точке, затем «Служба заботы».</p>
+    </div>
+  </details>
+</section>
+
+<!-- FIRST SHIFT -->
+<section id="shift">
+  <h2>Первая смена — пошагово</h2>
+  <p class="subtitle">Что сделать до, во время и после, чтобы спокойно отработать и получить деньги.</p>
+
+  <div class="curator">
+    <h3>🛡️ На первую смену я закрепляю куратора</h3>
+    <p>
+      Куратор — это конкретный человек на точке, который встретит вас,
+      покажет, где что находится, и скажет: <em>«Спрашивай сразу, это нормально»</em>.
+      Плюс я на связи в чате: если что-то непонятно в процессе — пишите, разберём вместе.
+      После смены я напишу вам: «Как всё прошло? Есть вопросы?» — чтобы вторая смена была проще.
+    </p>
+  </div>
+
+  <div class="step-list">
+    <div class="step">
+      <h3>До смены — чек-лист</h3>
+      <ul>
+        <li><strong>Статус самозанятого</strong> — без него смену не взять. Оформляется в «Моём налоге» за 2–10 минут.</li>
+        <li><strong>Медкнижка</strong> — обязательна для работы с продуктами. Авито компенсирует до 3 000 ₽.</li>
+        <li><strong>Партнёрство в «Моём налоге»</strong> — Джем: раздел «Партнёры» → «Джем Работа». Авито: разреши формировать чеки и укажи данные для выплат.</li>
+        <li><strong>Карта или СБП</strong> — без реквизитов выплата не придёт.</li>
+        <li><strong>Подтверди выход в Джеме за 2 часа</strong> — иначе заказ могут снять.</li>
+        <li><strong>Приходи за 15 минут</strong> — переодеться, отметиться, получить терминал.</li>
+      </ul>
+    </div>
+    <div class="step">
+      <h3>Начало смены — первые 15 минут</h3>
+      <ul>
+        <li><strong>Найди ответственного.</strong> «Я на смену, ФИО такое-то, пришёл через [приложение]». Не ждут — попроси проверить по фамилии. Не находят — пиши в чат поддержки. Не уходи.</li>
+        <li><strong>Отметься.</strong> Распишись в журнале и отметься в системе учёта (биометрия или QR). Без отметки смена может не считаться.</li>
+        <li><strong>Получи ТСД и авторизуйся.</strong> В Джеме нажми «Начать заказ» — ответственный отсканирует QR, чтобы открыть смену.</li>
+      </ul>
+    </div>
+    <div class="step">
+      <h3>📦 Если ты сборщик заказов</h3>
+      <ul>
+        <li>ТСД ведёт тебя сам — следуй подсказкам.</li>
+        <li>Бери только свежее — проверяй сроки годности.</li>
+        <li>Нет товара — подбери замену и позвони покупателю. Не ищи по складу.</li>
+        <li>Упаковывай по ходу: тяжёлое/твёрдое — вниз, лёгкое — сверху. Химию и жидкости — в отдельный пакет.</li>
+        <li>Подписывай пакеты: номер заказа, кол-во пакетов, охлаждёнка/заморозка/хрупкое, время доставки.</li>
+        <li>Не можешь найти товар — спроси старшего.</li>
+      </ul>
+    </div>
+    <div class="step">
+      <h3>🛒 Если ты в прикассовой зоне</h3>
+      <ul>
+        <li>Твоя задача — помочь, а не «продать».</li>
+        <li>Конфликт — зови старшего или менеджера. Ты не остаёшься с агрессией один на один.</li>
+        <li>Проверяй документы при продаже алкоголя и табака. Сомневаешься в возрасте — попроси паспорт.</li>
+      </ul>
+    </div>
+    <div class="step">
+      <h3>💪 Если ты на разгрузке и выкладке</h3>
+      <ul>
+        <li>В первую смену — обычно лёгкие зоны (выкладка, сортировка, помощь).</li>
+        <li>Спина — главное. Поднимай груз ногами: согни колени, спина прямая.</li>
+        <li>Не тащи в одиночку тяжёлое — попроси помощь или тележку.</li>
+        <li>Не перегружай стеллажи, освобождай проходы.</li>
+      </ul>
+    </div>
+    <div class="step">
+      <h3>Завершение смены</h3>
+      <ul>
+        <li><strong>Джем:</strong> нажми «Завершить заказ» → покажи QR ответственному. При корректировке длительности — согласись или не согласись в приложении.</li>
+        <li><strong>Авито/другие:</strong> убедись, что смена закрыта и видна в истории. Выйди из аккаунта, поставь ТСД на зарядку.</li>
+        <li><strong>Проверь статус выплаты</strong> — в Джеме на странице заказа, в Авито в разделе выплат.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENTS -->
+<section>
+  <h2>Выплаты и налоги</h2>
+  <p class="subtitle">Всё автоматизировано и прописано в правилах сервиса — бежать в налоговую не нужно.</p>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>⏱ Сроки</h3>
+      <ul>
+        <li><strong>Авито Подработка:</strong> 24–48 часов после подтверждения смены</li>
+        <li><strong>Джем:</strong> как правило, в тот же день, но некоторые бренды закрывают заказы на следующий день</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🧾 Налог (НПД)</h3>
+      <ul>
+        <li><strong>4%</strong> — с поступлений от физлиц</li>
+        <li><strong>6%</strong> — от юрлиц и ИП</li>
+        <li>Сервис автоматически формирует чек и уведомляет ФНС</li>
+        <li>Налог удерживается автоматически или списывается с привязанной карты</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Совет:</strong> если деньги не пришли вовремя — не жди неделю. Напиши в чат поддержки сервиса с номером смены, датой и точкой.</div>
+</section>
+
+<!-- RULES -->
+<section>
+  <h2>Три правила, которые важнее всего</h2>
+  <div style="margin-top:16px;">
+    <div class="rule">
+      <div class="num">1</div>
+      <div>
+        <h4>Отменять смену меньше чем за 12 часов — плохо</h4>
+        <p>В Джеме за это автоматическая блокировка на 7 дней. При повторе срок растёт. Уважительная причина — напиши в поддержку, блокировку снимут.</p>
+      </div>
+    </div>
+    <div class="rule">
+      <div class="num">2</div>
+      <div>
+        <h4>Не спорь на точке</h4>
+        <p>Тебя не могут найти, спорная ситуация, конфликт — не выясняй отношения с сотрудниками магазина. Пиши в чат поддержки — там подскажут.</p>
+      </div>
+    </div>
+    <div class="rule">
+      <div class="num">3</div>
+      <div>
+        <h4>Первая смена — проба, а не экзамен</h4>
+        <p>Можно задавать вопросы, просить помощи, говорить «я не знаю, как это сделать». Наставник на точке существует именно для этого. Если первые полчаса ищешь инвентарь — это не твоя вина, это задача точки. Спрашивай сразу.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Связаться со мной</h2>
+  <p class="subtitle">Напиши или позвони — помогу на любом этапе. Отвечаю лично.</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="icon">💬</div>
+      <h4>WhatsApp</h4>
+      <a href="https://wa.me/79771199584" target="_blank" rel="noopener">+7 (977) 119-95-84</a>
+      <p>Написать в WhatsApp</p>
+    </div>
+    <div class="contact-card">
+      <div class="icon">📱</div>
+      <h4>MAX</h4>
+      <a href="tel:+79771199584">+7 (977) 119-95-84</a>
+      <p>Валентин</p>
+    </div>
+  </div>
+
+  <div class="final-cta" style="margin-top:36px;">
+    <h3>Готовы посмотреть 3 смены рядом? 🚀</h3>
+    <p>Это первый маленький шаг. Без регистрации, без обязательств — просто посмотреть, что есть.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/79771199584" class="btn btn-primary btn-large" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="tel:+79771199584" class="btn btn-secondary btn-large">📞 +7 (977) 119-95-84</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="owl">🦉</p>
+  <p><strong>Валентин</strong> — рекрутинг для Авито Подработки и Джем Работы</p>
+  <p style="margin-top:6px;">
+    <a href="https://wa.me/79771199584" target="_blank" rel="noopener">WhatsApp</a> ·
+    <a href="tel:+79771199584">+7 (977) 119-95-84</a>
+  </p>
+  <p style="margin-top:12px;font-size:.8rem;">Все условия и суммы фиксируются в приложениях сервисов. Портал носит информационный характер.</p>
+</footer>
+
+</body>
+</html>
